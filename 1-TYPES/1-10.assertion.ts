@@ -10,6 +10,7 @@
   // 문자열에서 쓸수 있는 함수들(.length)을 사용할 수 없다.
   // 이럴때 Type Assertions를 사용한다.
   // ❗ 하지만 return 값이 내가생각했던 type(string)이 아닐경우 보장하지 않음(비정상적 오류, 종료 등)
+  // 정말 확실할때만 사용해라🍭
   // type casting 2가지 방법
   console.log((result as string).length); // Type Assertions
   console.log((<string>result).length); // Type Assertions
@@ -22,9 +23,19 @@
     return undefined;
   }
 
+  // ex) number | null or undefined가 절대 아닐때 !(느낌표)
+  // 즉 무조건 number 일때
+
+  // number | string 이라면
+  // 장담할때 as string 하면 됨
+
   const numbers = findNumbers();
   // 정말 확실할때 ! 작성 ? 와 반대
   numbers!.push(2);
+
+  // const numbers = findNumbers()!;
+  // numbers.push(2);
+
   // 정말 확실할때 ! 사용해라
   const button = document.querySelector("class")!;
 }

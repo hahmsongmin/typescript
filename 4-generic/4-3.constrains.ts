@@ -41,6 +41,11 @@ const obj2 = {
   animal: "🐕",
 };
 
-function getValue<T>(objName: T, value: T): T {
-  return objName.value;
+// object key들 중 하나이다.
+function getValue<T, K extends keyof T>(objName: T, value: K): T[K] {
+  return objName[value];
 }
+
+console.log(getValue(obj, "name"));
+console.log(getValue(obj, "age"));
+console.log(getValue(obj2, "animal"));

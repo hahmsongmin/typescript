@@ -1,4 +1,5 @@
 {
+  // 정말 필요한 인터페이스만 노출시켜 이 클래스를 사용하기 쉽게 만든다(추상화)
   type CoffeeCup = {
     shots: number;
     hasMilk: boolean;
