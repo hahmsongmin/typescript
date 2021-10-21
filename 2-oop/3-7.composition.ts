@@ -70,6 +70,7 @@
   }
 
   // composition(필요한 기능 재사용, 다이아몬드상속성의 문제점때문에)
+  // class 끼리 커플링되어 있는 것들은 interface에 의해(규제로) 디커플링 시켜라
   class CheapMilkStreamer implements MilkForther {
     private steamMilk(): void {
       console.log("Steaming some milk...🥛");

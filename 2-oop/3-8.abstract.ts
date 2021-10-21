@@ -41,6 +41,8 @@
       console.log("heating up.....");
     }
 
+    // 다른곳은 다 동일하고 ✨ (C++ 가상함수와 유사)
+    // 자식클래스마다 행동이 달라는 것이 있다면 abstract 붙이고 구현부는 자식에서
     protected abstract extract(shots: number): CoffeeCup;
 
     makeCoffee(shots: number): CoffeeCup {
@@ -88,4 +90,7 @@
     console.log("---------------------------------");
     console.log(machine.makeCoffee(1));
   });
+
+  const test = new CaffeLatteMarker(34, "SS");
+  test.makeCoffee(2);
 }
