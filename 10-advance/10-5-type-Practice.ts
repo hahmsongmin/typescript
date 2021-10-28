@@ -69,6 +69,7 @@
 
   //⭐️ Omit
   // 기존의 타입에서 원하는 속성과 value들만 제외한 나머지 들만 명시
+  // Video Type에 url, data 가 있다면 제외하기 때문에 Video Type에 명시되어 있지않아도 기입은 됨
 
   type VideoMetadata1 = Omit<Video, "url" | "data">;
 
