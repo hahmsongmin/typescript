@@ -79,4 +79,17 @@
       title: "Hello",
     };
   }
+
+  //⭐️ Record
+  // 하나와 어떤하나를 연결하고 싶을 때, 하나를 key로쓰고 다른 하나를 다른 타입으로 묶고 싶을 때
+  type PageInfo = {
+    title: string;
+  };
+  type Page = "home" | "about" | "contact";
+
+  const nav: Record<Page, PageInfo> = {
+    home: { title: "Hello" },
+    about: { title: "cho" },
+    contact: { title: "haha" },
+  };
 }
