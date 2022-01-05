@@ -2,7 +2,7 @@
   // Type Assertions ❗
 
   function jsStrFunc(): any {
-    return "Hello";
+    return 'Hello';
   }
 
   const result = jsStrFunc();
@@ -37,5 +37,18 @@
   // numbers.push(2);
 
   // 정말 확실할때 ! 사용해라
-  const button = document.querySelector("class")!;
+  const button = document.querySelector('class')!;
+}
+{
+  const wrong: any = 5;
+  console.log((wrong as Array<number>).push(2)); // Application 종료 에러
+
+  function ourFindNumbers(): number[] | undefined {
+    return undefined;
+  }
+
+  const numbers = ourFindNumbers();
+  numbers!.push(2); // <= 경고는 하지만 배열을 확신할때
+  // ⭐️ 느낌표(무조건 null || undefined 가 아니야)
+  // 또는 함수뒤에 붙여도 됨 const numbers = ourFindNumbers()! ⭐️;
 }
