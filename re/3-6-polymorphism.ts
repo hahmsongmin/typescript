@@ -1,7 +1,8 @@
 {
   type CoffeeCup = {
     shots: number;
-    hasMilk: boolean;
+    hasMilk?: boolean;
+    hasSugar?: boolean;
   };
 
   // 인터페이스에서 규약된 것은 클래스에서 반드시 구현해야 함
@@ -75,8 +76,34 @@
     }
   }
 
-  const basicMaker = new CoffeeMaker(33);
-  const latteMaker = new CaffeLatteMaker(32, 'halo');
-  const coffee = latteMaker.makeCoffee(3);
-  console.log(coffee);
+  class SweetCoffeeMaker extends CoffeeMaker {
+    private fillSugar() {
+      console.log('sugar sugar.. 🍭');
+    }
+
+    makeCoffee(shots: number): CoffeeCup {
+      const coffee = super.makeCoffee(shots);
+      this.fillSugar();
+      return {
+        ...coffee,
+        hasSugar: true,
+      };
+    }
+  }
+
+  const machines: ICoffeeMaker[] = [
+    new CoffeeMaker(17),
+    new CaffeLatteMaker(17, 'SS'),
+    new SweetCoffeeMaker(17),
+    new CoffeeMaker(17),
+    new CaffeLatteMaker(17, 'SS'),
+    new SweetCoffeeMaker(17),
+  ];
+  // 내부적으로 구현된 다양한 클래스들이 한가지 인터페이스를 구현하거나 또는 동일한 부모 클래스를 상속했을 때
+  // 동일한 함수를 어떤 클래스인지 구분하지 않고 공통된 API를 호출할 수 있는게 다형성의 장점이다.
+  // ✅ 부모 클래스를 상속한 자식클래스들이 인터페이스와 부모클래스에 있는 함수들을 다른방식으로 다양하게 구성하는 것
+  machines.forEach((machine) => {
+    console.log('---------------------------');
+    machine.makeCoffee(1);
+  });
 }
