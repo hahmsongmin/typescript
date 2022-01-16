@@ -41,3 +41,19 @@
     }
   }
 }
+
+{
+  type Songmin = {
+    name: string;
+  };
+  type Younmin = {
+    name: string;
+    pay?(): void;
+  };
+
+  type Conbine = Songmin & Younmin;
+
+  function GoLunchTime(whoWillPay: Conbine) {
+    console.log(whoWillPay.name, whoWillPay.pay);
+  }
+}

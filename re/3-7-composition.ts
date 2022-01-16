@@ -174,3 +174,77 @@
   const coldLatteMachine = new CoffeeMaker(12, coldMilkMaker, noSugar);
   const sweetLatteMachine = new CoffeeMaker(12, fancyMilkMaker, candySugar);
 }
+
+{
+  type CoffeeCup = {
+    shots: number;
+    hasMilk?: boolean;
+    hasSugar?: boolean;
+  };
+
+  interface ICoffeeMaker {
+    makeCoffee(shots: number): CoffeeCup;
+  }
+
+  class OriginalMaker implements ICoffeeMaker {
+    private static _beans: number = 0;
+    constructor(beans: number, private milk: IMilkMaker, private sugar: ISugarMaker) {
+      OriginalMaker._beans = beans;
+    }
+
+    grind(shots: number): CoffeeCup {
+      return {
+        shots,
+        hasMilk: false,
+        hasSugar: false,
+      };
+    }
+
+    makeCoffee(shots: number): CoffeeCup {
+      const cup = this.grind(shots);
+      const isMilk = this.milk.addMilk(cup);
+      return this.sugar.addSugar(isMilk);
+    }
+  }
+
+  interface IMilkMaker {
+    addMilk(cup: CoffeeCup): CoffeeCup;
+  }
+
+  interface ISugarMaker {
+    addSugar(cup: CoffeeCup): CoffeeCup;
+  }
+
+  class ColdMilk implements IMilkMaker {
+    private getMilk() {
+      console.log('Cold milk');
+    }
+    addMilk(cup: CoffeeCup): CoffeeCup {
+      this.getMilk();
+      return {
+        ...cup,
+        hasMilk: true,
+      };
+    }
+  }
+
+  class ColdSugar implements ISugarMaker {
+    private getSugar() {
+      console.log('Cold sugar');
+    }
+    addSugar(cup: CoffeeCup): CoffeeCup {
+      this.getSugar();
+      return {
+        ...cup,
+        hasSugar: true,
+      };
+    }
+  }
+
+  const coldMilk = new ColdMilk();
+  const coldSugar = new ColdSugar();
+
+  const maker = new OriginalMaker(32, coldMilk, coldSugar);
+  const coldLattee = maker.makeCoffee(3);
+  console.log(coldLattee);
+}
