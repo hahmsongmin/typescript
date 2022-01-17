@@ -17,3 +17,20 @@
   const either: IEither<number, number> = new SimpleEither(4, 5);
   const best = new SimpleEither({ name: 'ivan' }, 'Hello');
 }
+
+interface IEither<L, R> {
+  left: () => L;
+  right: () => R;
+}
+
+class Student<L, R> implements IEither<L, R> {
+  constructor(private leftValue: L, private rightValue: R) {}
+  left(): L {
+    return this.leftValue;
+  }
+  right(): R {
+    return this.rightValue;
+  }
+}
+
+// const temp: IEither<string, number> = new Student('Hello', "123");

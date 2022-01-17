@@ -15,3 +15,9 @@
   const temp: number = checkNotNull(123);
   console.log(temp);
 }
+
+function check<T>(arg: T): T {
+  return arg;
+}
+
+console.log(check({ name: 'Hello' }));

@@ -31,8 +31,16 @@
   const ivan = new FullTimeEmployee();
   const selah = new PartTimeEmployee();
 
+  function like<T extends IEmployee>(employee: T): T {
+    employee.pay();
+    return employee;
+  }
+
   ivan.workFullTime();
   selah.workPartTime();
+
+  const full = like(ivan);
+  const part = like(selah);
 
   const ivanAfterPay = pay(ivan);
   const selahAfterPay = pay(selah);
@@ -56,4 +64,19 @@
   console.log(getValue(obj, 'name'));
   console.log(getValue(obj, 'age'));
   console.log(getValue(obj2, 'animal'));
+}
+
+{
+  const obj = {
+    name: 'ivan',
+    age: 33,
+  };
+
+  const obj2 = {
+    animal: 'mama',
+  };
+
+  function getValuee<O, K extends keyof O>(object: O, value: K): O[K] {
+    return object[value];
+  }
 }
