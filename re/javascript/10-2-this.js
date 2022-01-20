@@ -41,3 +41,15 @@ class User {
 const my = new User();
 const Halo = my.decrease; // 포인터를 Halo로
 Halo(); // this,  User
+
+/* ??? 질문 ???
+const counter = new Counter();
+객체를 만들고 counter.increase(); 했을 때 콘솔에 Counter{count:0, increase:f} 
+Counter 클래스를 가르키는 것인지 아니면 counter 객체를 가르키는 것인지 ??
+
+일반 클래스 멤버 변수와 함수들을 this. 이렇게 가리킨다면,
+
+클래스라는 템플릿을 통해 실제로 데이터가 들어가서 만들어진 객체 자체를 가리키고
+
+하지만 static이라는 키워드를 이용해서 클래스 레벨의 변수나 함수를 정의 한다면, 클래스 자체를 가리키게 됨
+*/
