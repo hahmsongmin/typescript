@@ -86,6 +86,14 @@
   const amateur = new AmateurUser(maker);
   const pro = new ProBarista(maker);
 
+  console.clear();
+
+  function handle(hello: CoffeeMaker) {
+    console.log(hello);
+  }
+
+  handle(maker);
+
   amateur.makeCoffee();
   pro.makeCoffee();
 }
